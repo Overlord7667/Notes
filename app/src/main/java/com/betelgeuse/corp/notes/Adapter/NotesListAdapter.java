@@ -49,24 +49,24 @@ public class NotesListAdapter extends  RecyclerView.Adapter<NotesViewHolder>{
         holder.textView_date.setSelected(true);
 
         if (list.get(position).isPinned()){
-            holder.imegeView_pin.setImageResource(R.drawable.cancelyary_button);
+            holder.imageView_pin.setImageResource(R.drawable.cancelyary_button);
         }else {
-            holder.imegeView_pin.setImageResource(0);
+            holder.imageView_pin.setImageResource(0);
         }
         int color_code = getRandomColor();
-        holder.notes_conteiner.setCardBackgroundColor(holder.itemView.getResources().getColor(color_code, null));
+        holder.notes_container.setCardBackgroundColor(holder.itemView.getResources().getColor(color_code, null));
 
-        holder.notes_conteiner.setOnClickListener(new View.OnClickListener() {
+        holder.notes_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 listener.onClick(list.get(holder.getAdapterPosition()));
             }
         });
 
-        holder.notes_conteiner.setOnLongClickListener(new View.OnLongClickListener() {
+        holder.notes_container.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                listener.onLongClick(list.get(holder.getAdapterPosition()), holder.notes_conteiner);
+                listener.onLongClick(list.get(holder.getAdapterPosition()), holder.notes_container);
                 return true;
             }
         });
@@ -94,20 +94,26 @@ public class NotesListAdapter extends  RecyclerView.Adapter<NotesViewHolder>{
     public int getItemCount() {
         return list.size();
     }
+
+    public void  filterList(List<Notes> filteredList){
+
+        list = filteredList;
+        notifyDataSetChanged();
+    }
 }
 class NotesViewHolder extends RecyclerView.ViewHolder {
-    CardView notes_conteiner;
+    CardView notes_container;
     TextView textView_title, textView_notes, textView_date;
-    ImageView imegeView_pin;
+    ImageView imageView_pin;
 
 
     public NotesViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        notes_conteiner = itemView.findViewById(R.id.notes_conteiner);
+        notes_container = itemView.findViewById(R.id.notes_container);
         textView_title = itemView.findViewById(R.id.textView_title);
         textView_notes = itemView.findViewById(R.id.textView_notes);
         textView_date = itemView.findViewById(R.id.textView_date);
-        imegeView_pin = itemView.findViewById(R.id.imageView_pin);
+        imageView_pin = itemView.findViewById(R.id.imageView_pin);
     }
 }

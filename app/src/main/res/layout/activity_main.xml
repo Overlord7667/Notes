@@ -9,11 +9,23 @@
     app:circularflow_radiusInDP="50"
     tools:context=".MainActivity">
 
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView_home"
+        android:layout_margin="16dp"
+        app:iconifiedByDefault="false"
+        app:queryHint="Enter text ..."
+        android:layout_alignParentTop="true"
+        android:background="@color/gray"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="8dp"></androidx.recyclerview.widget.RecyclerView>
+        android:layout_margin="8dp"
+        android:layout_below="@id/searchView_home"></androidx.recyclerview.widget.RecyclerView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add"
